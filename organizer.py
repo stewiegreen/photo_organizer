@@ -28,18 +28,21 @@ class PhotoOrganizer:
 
 
     def move_photos(self, file):
+        #parsing the list made in check_exif
         for f in file:
             p = f[0]
             filename = f[1]
             y = f[2]
             m = f[3]
-
+            # if the path doesn't exist make the new directories and move file
             if os.path.isdir(self.move_to_path + str(y) + "/" + str(m) + "/") == False:
                 os.makedirs(self.move_to_path + str(y) + "/" + str(m) + "/")
                 shutil.move(p + filename, self.move_to_path + str(y) + "/" + str(m) + "/")
+            #if the file already exists in the directory print a warning and skip file
             elif os.path.isfile(self.move_to_path + str(y) + "/" + str(m) + "/" + filename) == True:
                 print(filename + " already exists in this directory")
                 pass
+            #all is good, file is being moved
             else:
                 shutil.move(p + filename, self.move_to_path + str(y) + "/" + str(m) + "/")
 

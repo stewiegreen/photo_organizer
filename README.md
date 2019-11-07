@@ -13,7 +13,11 @@ tell you which are duplicates (but terminal will not say which ones have no exif
 The file structure ends up looking like this:
 Destination folder/year/month/
 
-If you're like me you have photos from 3 or 4 different people/devices which makes
-sorting photos in chronological order impossible so I may add an option to also
-rename photos (something like YY_MM_DD_HH_MM_SS.jpg) so that they are in
-chronological order
+Some things to do:
+
+Set up a simple .txt file that sets a permanent root folder location where all photos are saved.
+
+Add an option to rename photos (something like YY_MM_DD_HH_MM_SS.jpg) so that they are in
+chronological order no matter how many friends/family you get your photos from
+
+Add more photo types
