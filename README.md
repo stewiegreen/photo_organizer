@@ -16,6 +16,8 @@ Destination folder/year/month/
 Some things to do:
 
 Set up a simple .txt file that sets a permanent root folder location where all photos are saved.
+***This has been done, but it requires opening the txt file and deleting the contents if changes need to be made -
+I'll work on a system for making changes to the destination folder after the initial save later***
 
 Add an option to rename photos (something like YY_MM_DD_HH_MM_SS.jpg) so that they are in
 chronological order no matter how many friends/family you get your photos from

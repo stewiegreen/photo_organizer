@@ -31,24 +31,38 @@ class PhotoOrganizer:
 
     def move_photos(self, path, filename, year, month):
         # if the path doesn't exist make the new directories and move file
-        if os.path.isdir(self.move_to_path + str(y) + "/" + str(m) + "/") == False:
-            os.makedirs(self.move_to_path + str(y) + "/" + str(m) + "/")
-            shutil.move(p + filename, self.move_to_path + str(y) + "/" + str(m) + "/")
+        if os.path.isdir(self.move_to_path + str(year) + "/" + str(month) + "/") == False:
+            os.makedirs(self.move_to_path + str(year) + "/" + str(month) + "/")
+            shutil.move(path + filename, self.move_to_path + str(year) + "/" + str(month) + "/")
         #if the file already exists in the directory print a warning and skip file
-        elif os.path.isfile(self.move_to_path + str(y) + "/" + str(m) + "/" + filename) == True:
+        elif os.path.isfile(self.move_to_path + str(year) + "/" + str(month) + "/" + filename) == True:
             print(filename + " already exists in this directory")
             pass
         #all is good, file is being moved
         else:
-            shutil.move(p + filename, self.move_to_path + str(y) + "/" + str(m) + "/")
+            shutil.move(path + filename, self.move_to_path + str(year) + "/" + str(month) + "/")
 
 
-path = input('Enter Directory path to Search (this will NOT search subfolders!): ')
-to_path = input('Enter Directory path to move photos to: ')
+def main():
+    if os.stat("move_to.txt").st_size != 0:
+        with open('move_to.txt', 'r') as move_it:
+            to_path = move_it.readline()
+    else:
+        to_path = input('Enter Directory path to move photos to: ')
+        save = input('Would you like to save this for future use? ')
+        if save.lower() == 'yes' or save.lower() == 'y':
+            with open('move_to.txt', 'w') as move_it:
+                move_it.write(to_path)
+        else:
+            pass
 
-photo = PhotoOrganizer(path, to_path)
+    path = input('Enter Directory path to Search (this will NOT search subfolders!): ')
 
-for f in os.listdir(path):
-    if photo.check_exif(f) != None:
-        p, filename, y, m = photo.check_exif(f)
-        photo.move_photos(p, filename, y, m)
+    photo = PhotoOrganizer(path, to_path)
+
+    for f in os.listdir(path):
+        if photo.check_exif(f) != None:
+            p, filename, y, m = photo.check_exif(f)
+            photo.move_photos(p, filename, y, m)
+
+main()
