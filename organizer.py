@@ -42,21 +42,39 @@ class PhotoOrganizer:
         else:
             shutil.move(path + filename, self.move_to_path + str(year) + "/" + str(month) + "/")
 
+def choose_destination():
+    to_path = input('Enter Directory path to move photos to: ')
+    save = input('Would you like to save this for future use? (this will overwrite any saved settings) ')
+    if save.lower() == 'yes' or save.lower() == 'y':
+        with open('move_to.txt', 'w') as move_it:
+            move_it.write(to_path)
+    return to_path
 
-def main():
+def saved_destination():
     if os.stat("move_to.txt").st_size != 0:
         with open('move_to.txt', 'r') as move_it:
             to_path = move_it.readline()
     else:
-        to_path = input('Enter Directory path to move photos to: ')
-        save = input('Would you like to save this for future use? ')
-        if save.lower() == 'yes' or save.lower() == 'y':
-            with open('move_to.txt', 'w') as move_it:
-                move_it.write(to_path)
-        else:
-            pass
+        print('You do not have a destination currently saved, please enter one...')
+        choose_destination()
+    return to_path
 
-    path = input('Enter Directory path to Search (this will NOT search subfolders!): ')
+
+def main():
+
+    menu_list = ["1. Choose Destination folder", "2. Use Saved Destination Folder"]
+    for menu in menu_list:
+        print(menu)
+    choice = input("Choose an option: ")
+    if choice == "1":
+        to_path = choose_destination()
+    elif choice == "2":
+        to_path = saved_destination()
+    else:
+        print("Please select either 1 or 2")
+        main()
+
+    path = input('Enter Directory path that contains your photos to organize (this will NOT search subfolders!): ')
 
     photo = PhotoOrganizer(path, to_path)
 
