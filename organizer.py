@@ -57,6 +57,7 @@ def saved_destination():
     else:
         print('You do not have a destination currently saved, please enter one...')
         choose_destination()
+        pass
     return to_path
 
 
