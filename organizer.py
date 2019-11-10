@@ -44,7 +44,7 @@ class PhotoOrganizer:
 
 def choose_destination():
     to_path = input('Enter Directory path to move photos to: ')
-    save = input('Would you like to save this for future use? (this will overwrite any saved settings) ')
+    save = input('Would you like to save this for future use? yes/no ')
     if save.lower() == 'yes' or save.lower() == 'y':
         with open('move_to.txt', 'w') as move_it:
             move_it.write(to_path)
@@ -54,11 +54,12 @@ def saved_destination():
     if os.stat("move_to.txt").st_size != 0:
         with open('move_to.txt', 'r') as move_it:
             to_path = move_it.readline()
+            return to_path
     else:
-        print('You do not have a destination currently saved, please enter one...')
-        choose_destination()
+        print('You do not have a destination currently saved ...')
+        main()
         pass
-    return to_path
+    
 
 
 def main():
