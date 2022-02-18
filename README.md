@@ -15,7 +15,8 @@ Destination folder/year/month/
 
 Some things to do:
 
-Add an option to rename photos (something like YY_MM_DD_HH_MM_SS.jpg) so that they are in
-chronological order no matter how many friends/family you get your photos from.
+Make the code more readable.
 
 Add more photo types
+
+I've decided not to have a rename option because there are really no good - batch auto renaming - solutions.
