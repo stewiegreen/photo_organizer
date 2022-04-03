@@ -1,5 +1,9 @@
 This is a Photo Organizing script I created on Python to help me learn.
 
+Requirements:
+Python 3+
+Pillow
+
 It will give you 2 menu options and then ask you for the source directory for your photos and the
 destination directory.  The script looks at exif metadata and places your photos into folders based 
 on the month and year the photos were taken.
